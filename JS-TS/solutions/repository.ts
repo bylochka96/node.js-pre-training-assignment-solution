@@ -42,7 +42,7 @@ export class InMemoryRepository<T extends { id: number }> {
 
 class TodoNotFoundError extends Error {
   constructor(id: number) {
-    super(`Todo with id ${id} not found`);
+    super(`Todo with id = '${id}' not found`);
     this.name = 'TodoNotFoundError';
   }
 }

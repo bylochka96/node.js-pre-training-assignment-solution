@@ -17,6 +17,11 @@ export class TodoApi {
     return this.repo.findAll()
   }
 
+  async getTodoById(id: number): Promise<Todo | undefined> {
+    await this.simulateNetworkLatency()
+    return this.repo.findById(id)
+  }
+
   async add(newTodo: NewTodo): Promise<Todo> {
     await this.simulateNetworkLatency()
     const todo = createTodo(newTodo)
