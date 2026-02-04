@@ -40,12 +40,16 @@ describe('TodoService', () => {
     jest.advanceTimersByTime(600);
     const todo: Todo = await createPromise
 
-    // First toggle: PENDING → COMPLETED
+    // First toggle: PENDING → IN_PROGRESS
     jest.useRealTimers();
     let updated: Todo = await service.toggleStatus(todo.id);
+    expect(updated.status).toBe(TodoStatus.IN_PROGRESS);
+
+    // Second toggle: IN_PROGRESS → COMPLETED
+    updated = await service.toggleStatus(todo.id);
     expect(updated.status).toBe(TodoStatus.COMPLETED);
 
-    // Second toggle: COMPLETED → IN_PROGRESS
+    // Third toggle: COMPLETED → IN_PROGRESS
     updated = await service.toggleStatus(todo.id);
     expect(updated.status).toBe(TodoStatus.IN_PROGRESS);
   });

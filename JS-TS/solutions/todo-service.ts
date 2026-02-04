@@ -11,10 +11,14 @@ export class TodoService {
 
   async toggleStatus(id: number): Promise<Todo> {
     const todo = await this.searchById(id);
-    return todo.status === TodoStatus.COMPLETED
-      ? await this.api.update(id, {status: TodoStatus.IN_PROGRESS})
-      : await this.api.update(id, {status: TodoStatus.COMPLETED});
-
+    switch (todo.status) {
+      case TodoStatus.PENDING:
+        return await this.api.update(id, {status: TodoStatus.IN_PROGRESS})
+      case TodoStatus.IN_PROGRESS:
+        return await this.api.update(id, {status: TodoStatus.COMPLETED})
+      case TodoStatus.COMPLETED:
+        return await this.api.update(id, {status: TodoStatus.IN_PROGRESS})
+    }
   }
 
   async delete(id: number): Promise<void> {
