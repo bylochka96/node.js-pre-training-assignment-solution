@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "cli": "tsc && node .\\dist\\JS-TS\\solutions\\index.js",
     "test": "jest",
     "test:all": "jest",
     "test:docker-git": "jest tests/docker-git.test.js",
@@ -21,7 +22,8 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "jest": "^30.0.4",
-    "ts-jest": "^29.1.0"
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "express": "^5.1.0"

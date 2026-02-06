@@ -24,7 +24,7 @@ export class TodoApi {
 
   async add(newTodo: NewTodo): Promise<Todo> {
     await this.simulateNetworkLatency()
-    const todo = createTodo(newTodo)
+    const todo: Todo = createTodo(newTodo)
     return this.repo.add(todo)
   }
 

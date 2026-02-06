@@ -15,7 +15,7 @@ export class InMemoryRepository<T extends { id: number }> {
       const updatedTodo = {
         ...this.items[index], ...patch,
         id
-      };
+      } as T;
       this.items[index] = updatedTodo;
       return updatedTodo;
     }

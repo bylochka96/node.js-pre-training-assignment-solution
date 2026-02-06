@@ -26,7 +26,7 @@ export class TodoService {
   }
 
   async searchById(id: number): Promise<Todo> {
-    const todo: Todo = await this.api.getTodoById(id);
+    const todo: Todo | undefined = await this.api.getTodoById(id);
     if (!todo) {
       throw new Error(`Todo with id = '${id}' not found`);
     }
@@ -35,9 +35,10 @@ export class TodoService {
 
   async search(keyword: string): Promise<Todo[]> {
     const arrayOfTodo = await this.api.getAll();
+    if (keyword === '') return arrayOfTodo
     return arrayOfTodo.filter((todo) => {
       return todo.title.toLowerCase().includes(keyword.toLowerCase())
-        || todo.description.toLowerCase().includes(keyword.toLowerCase());
+        || todo.description?.toLowerCase().includes(keyword.toLowerCase());
     });
   }
 }

@@ -18,4 +18,5 @@ type NewTodo = {
     status?: TodoStatus;
 }
 
-export {Todo, TodoStatus, NewTodo};
+export {TodoStatus};
+export type { Todo, NewTodo };

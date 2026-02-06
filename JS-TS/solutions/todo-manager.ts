@@ -4,13 +4,13 @@ import {Todo, TodoStatus} from './types';
 
 export class ToDoManager {
   private service = new TodoService(new TodoApi());
-  private demoData = {
-    title: 'demo title',
-    description: 'demo description',
-  };
 
   async init(): Promise<void> {
-    await this.service.create(this.demoData.title, this.demoData.description);
+    const data = {
+      title: 'Demo title',
+      description: 'Demo description'
+    };
+    await this.service.create(data.title, data.description);
   }
 
   async add(title: string, description = ''): Promise<void> {
